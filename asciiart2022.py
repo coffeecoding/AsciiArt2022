@@ -5,8 +5,9 @@ import numpy as np
 
 # CONSTANTS
 brightness = '@%#*+=-. '   # 10 characters => get index by int((brightness / 256) * 10)     <--- this one looks best
+brightness = ' .-=;?#%@'
 length = len(brightness)
-inputimage = 'inputimg'
+inputimage = 'img'
 img = imageio.imread(inputimage + '.png')
 out = open(inputimage + ".txt", "w")
 
@@ -30,9 +31,7 @@ b_span = b_max - b_min
 fn_normalize = lambda b: (b - b_min) / b_span
 fn_normalize_row = lambda row: [fn_normalize(x) for x in row]
 b_map_norm = np.array(list(map(fn_normalize_row, b_map)))
-
-print((b_map_norm.min(), b_map_norm.max()))
-print(b_map_norm)
+# print((b_map_norm.min(), b_map_norm.max()))                       # should be (0.0, 1.0) 
 
 # CONVERT TO ASCII
 for row in b_map_norm :
