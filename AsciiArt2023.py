@@ -6,9 +6,14 @@ import numpy as np
 
 # CONFIG 
 brightness = ' .-=;?#%@'
-WIDTH_OUT = 40          
-ADD_SPACES = True
-filename = 'cup.jpg'
+# Fun fact: with a width of 14 in Windows (15 in linux)
+# the ASCII Art persists in a Hex dump of the file
+# 14 because the width is 16 and linebreaks take 2 chars 
+# in Windows (\r\n) and 1 char in unix (\n)
+WIDTH_OUT = 14
+ADD_SPACES = False
+filename = 'heart4.png'
+TRIM_SIDE_COLS_IF_EMPTY = True
 
 # Load and convert to BW
 image = Image.open(filename)
@@ -19,8 +24,8 @@ width, height = image.size
 if width > WIDTH_OUT :
     HEIGHT_OUT = int(round((WIDTH_OUT / width) * height))
     # Vertically compress if we don't add spaces to keep dimensions acceptable
-    if ADD_SPACES :
-        HEIGHT_OUT = round(0.67 * HEIGHT_OUT)
+    if ADD_SPACES == False :
+        HEIGHT_OUT = round(0.5 * HEIGHT_OUT)
     image = image.resize((WIDTH_OUT, HEIGHT_OUT), Image.BICUBIC)
 
 # Convert to list
@@ -45,7 +50,7 @@ while i < len(image_ascii) :
     i += 1
 
 # Print result
-print(ascii_out)
+# print(ascii_out)
 
 outfile = open(filename.split('.')[0] + ".txt", "w")
 outfile.write(ascii_out)
