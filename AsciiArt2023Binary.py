@@ -4,11 +4,14 @@ import sys
 import math
 import numpy as np
 
+# Binary version
+# Open the output as a HexDump and watch in awe the Art
+
 # CONFIG 
 # Binary mode: we only use 'C' for black and '0' for white
 # Since C is arguably the darkest Hex char, and 0 the lightest
 # Width is always 16
-filename = 'heart4.png'
+filename = 'grl.jpg'
 TRIM_SIDE_COLS_IF_EMPTY = True
 
 # Load and convert to BW
